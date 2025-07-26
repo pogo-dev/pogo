@@ -4,27 +4,27 @@ pre-commit:
   commands:
     fmt:
       glob: "*.go"
-      run: "go fmt {staged_files}"
+      run: go fmt {staged_files}
       stage_fixed: true
     vet:
-      run: "go vet"
+      run: go vet
     prettier-yaml:
       glob: "*.{yml,yaml}"
-      run: "npx prettier --write {staged_files}"
+      run: npx prettier --write {staged_files}
       exclude:
-        - "node_modules/**/*"
-        - "pnpm-lock.yaml"
+        - node_modules/**/*
+        - pnpm-lock.yaml
       stage_fixed: true
     prettier-json:
       glob: "*.json"
-      run: "npx prettier --write {staged_files}"
+      run: npx prettier --write {staged_files}
       exclude:
-        - "node_modules/**/*"
+        - node_modules/**/*
       stage_fixed: true
     gitleaks:
-      run: "docker run --rm -v .:/app zricethezav/gitleaks:latest git --pre-commit --staged /app"
+      run: docker run --rm -v .:/app zricethezav/gitleaks:latest git --pre-commit --staged /app
 commit-msg:
   parallel: true
   commands:
     commitlint:
-      run: "npx commitlint --edit {1}"
+      run: npx commitlint --edit {1}
